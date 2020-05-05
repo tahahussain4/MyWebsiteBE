@@ -78,6 +78,7 @@ public class Main {
 				.automatic(true).build()));
 		ProjectController controller = new ProjectController(new ProjectDBLayer(mongoClient,pojoCodecRegistry));
 		
+		Spark.get("/ping", ProjectController :: getProject);
 		Spark.get("/getAllProjects", ProjectController :: getAllProjects);
 		Spark.get("/getProject/:id", ProjectController :: getProject);
 		Spark.post("/putProject", (request, response) -> {
