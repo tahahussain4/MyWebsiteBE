@@ -13,18 +13,28 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-		<plugin>
-	       <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-jar-plugin</artifactId>
-	        <version>3.2.0</version>
-	        <configuration>
-	          <archive>
-	          <manifest>
-	            <mainClass>api.Main</mainClass>
-	          </manifest>
-	          </archive>
-	        </configuration>
-		</plugin>
+			<plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <descriptorRefs>
+                    <!-- This tells Maven to include all dependencies -->
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>api.Main</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
 <!-- 		<plugin>
 		    <groupId>com.heroku.sdk</groupId>
 		    <artifactId>heroku-maven-plugin</artifactId>
