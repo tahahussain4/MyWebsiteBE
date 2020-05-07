@@ -90,7 +90,7 @@ public class Main {
 	    }
 	    
 	    ConnectionString connString = new ConnectionString(
-	    	    "mongodb://heroku_kfvlgzs0:fp6tacarv3rnvr6v7oi05cqh8g@ds135234.mlab.com:35234"
+	    	    "mongodb://heroku_kfvlgzs0:fp6tacarv3rnvr6v7oi05cqh8g@ds135234.mlab.com:35234/heroku_kfvlgzs0"
 	    	);
 	    MongoClientSettings settings = MongoClientSettings.builder()
 	    	    .applyConnectionString(connString)
