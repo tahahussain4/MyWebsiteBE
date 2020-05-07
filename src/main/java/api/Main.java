@@ -90,20 +90,20 @@ public class Main {
 	    }
 	    
 	    ConnectionString connString = new ConnectionString(
-	    	    "mongodb://heroku_kfvlgzs0:fp6tacarv3rnvr6v7oi05cqh8g@ds135234.mlab.com:35234"
+	    	    "mongodb://heroku_kfvlgzs0:fp6tacarv3rnvr6v7oi05cqh8g@ds135234.mlab.com:35234s"
 	    	);
 	    MongoClientSettings settings = MongoClientSettings.builder()
 	    	    .applyConnectionString(connString)
 	    	    .retryWrites(true)
 	    	    .build();
-	    	MongoClient mongoClient = (MongoClient) MongoClients.create(settings);
-
+//	    	MongoClient mongoClient = new MongoClient("mongodb://heroku_kfvlgzs0:fp6tacarv3rnvr6v7oi05cqh8g@ds135234.mlab.com:35234/heroku_kfvlgzs0");
+	    	MongoClient mongoClient = MongoClients.create(settings);
 	    
 		CodecRegistry pojoCodecRegistry = org.bson.codecs.configuration.CodecRegistries.fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), org.bson.codecs.configuration.CodecRegistries
 				.fromProviders(PojoCodecProvider.builder()
 				.register(Project.class)
 				.automatic(true).build()));
-		ProjectController controller = new ProjectController(new ProjectDBLayer((com.mongodb.MongoClient) mongoClient,pojoCodecRegistry));
+		ProjectController controller = new ProjectController(new ProjectDBLayer( mongoClient,pojoCodecRegistry));
 		
 		Spark.get("/ping", PingController :: ping);
 		Spark.get("/getAllProjects", ProjectController :: getAllProjects);

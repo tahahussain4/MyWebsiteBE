@@ -8,7 +8,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.types.ObjectId;
 
-import com.mongodb.MongoClient;
+import com.mongodb.client.MongoClient;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -19,7 +19,7 @@ import model.Project;
 
 public class ProjectDBLayer {
 	static MongoClient mongoClient ;
-	static String dataBaseName = "test";
+	static String dataBaseName = "heroku_kfvlgzs0";
 	static String collectionName = "projects";
 	static MongoDatabase database ;
 	static MongoCollection<Project> projectCollection ;
@@ -85,19 +85,19 @@ public class ProjectDBLayer {
 	}
 	
 	public static void main(String[] args) {
-		try(MongoClient mongoClient = new MongoClient("localhost", 27017)){
-			CodecRegistry pojoCodecRegistry = org.bson.codecs.configuration.CodecRegistries.fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), org.bson.codecs.configuration.CodecRegistries
-					.fromProviders(PojoCodecProvider.builder()
-					.register(Project.class)
-					.automatic(true).build()));
-			ProjectDBLayer l = new ProjectDBLayer(mongoClient,pojoCodecRegistry);
-			ArrayList<String> skills = new ArrayList<String>();
-			skills.add("s1");
-			skills.add("s2");
-			
-			 l.putProject(new Project("tes", skills, "test", 2020, 2020, null));
-//			System.out.println(names.toString());
-		}
+//		try(MongoClient mongoClient = new MongoClient("localhost", 27017)){
+//			CodecRegistry pojoCodecRegistry = org.bson.codecs.configuration.CodecRegistries.fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), org.bson.codecs.configuration.CodecRegistries
+//					.fromProviders(PojoCodecProvider.builder()
+//					.register(Project.class)
+//					.automatic(true).build()));
+//			ProjectDBLayer l = new ProjectDBLayer(mongoClient,pojoCodecRegistry);
+//			ArrayList<String> skills = new ArrayList<String>();
+//			skills.add("s1");
+//			skills.add("s2");
+//			
+//			 l.putProject(new Project("tes", skills, "test", 2020, 2020, null));
+////			System.out.println(names.toString());
+//		}
 	}
 //	public getAllProjects(){
 //		
